@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Create() {
+    const navigate = useNavigate();
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [isAgree, setCheckbox] = useState(false);
@@ -12,6 +15,8 @@ export default function Create() {
             firstName,
             lastName,
             isAgree
+        }).then(() => {
+            navigate('/read')
         })
     };
 

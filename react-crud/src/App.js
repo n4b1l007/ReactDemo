@@ -13,7 +13,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Create />} />
+              <Route index path="create" element={<Create />} />
               <Route path="read" element={<Read />} />
               <Route path="update" element={<Update />} />
             </Route>
