@@ -11,6 +11,33 @@ namespace TestApi.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
+        /// <comment>
+        /// Commentor: Md Amanul Haque
+        /// Apply the following for all controllers
+        /// 
+        /// 1. change the rest methods to use async
+        /// Example: public async Task<ProjectDto> Get(int id)
+        /// 2. Use try-Catch block in the rest methods
+        /// Example: 
+        /// [HttpGet]
+        /// public async Task<IEnumerable<ProjectDto>> Get()
+        /// {
+        ///    try
+        ///    {
+        ///     var Projects = _unitOfWork.Projects.GetAll();
+
+        ///     var DtoProjects = _mapper.Map<IEnumerable<ProjectDto>>(Projects);
+
+        ///     return Ok(DtoProjects);
+        ///    }
+        ///    catch (Exception ex)
+        ///    {
+        ///       // Log the exception
+        ///       return BadRequeest("Error on fetching project data");
+        ///    }
+        ///  }
+        /// </comment>
+
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         public ProjectController(IUnitOfWork unitOfWork, IMapper mapper)
@@ -27,6 +54,7 @@ namespace TestApi.Controllers
             var DtoProjects = _mapper.Map<IEnumerable<ProjectDto>>(Projects);
 
             return DtoProjects;
+            
         }
 
         [HttpGet("{id}")]
@@ -40,6 +68,7 @@ namespace TestApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] ProjectCreateUpdateDto Project)
         {
+            // 
             var ProjectObj = _mapper.Map<Project>(Project);
             _unitOfWork.Projects.Add(ProjectObj);
             _unitOfWork.Complete();

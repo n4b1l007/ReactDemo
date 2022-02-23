@@ -1,8 +1,7 @@
 ﻿namespace TestApi.Entities
 {
-    public class Developer
+    public class Developer : BaseEntity
     {
-        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
